@@ -22,6 +22,10 @@
                 padding: 0.3em;
                 margin: 0.3em;
                 border: none;
+                cursor:pointer;
+            }
+            button:active{
+                opacity:0.3;
             }
             .container {
                 width: 100%;

@@ -6,6 +6,7 @@
 package thread;
 
 import java.io.IOException;
+import main.MyProperties;
 import main.WatchDir;
 
 /**
@@ -15,6 +16,11 @@ import main.WatchDir;
 public class MyThread extends Thread {
 
     WatchDir wd;
+    MyProperties p;
+
+    public MyThread(MyProperties p) {
+        this.p = p;
+    }
 
     @Override
     public void run() {
@@ -32,11 +38,12 @@ public class MyThread extends Thread {
         if (wd == null) {
             System.out.println("MyThread:Starting");
             try {
-                wd = new WatchDir();
+                wd = new WatchDir(p);
                 wd.processEvents();
 
             } catch (IOException ex) {
                 System.out.println("MyThread:Failed to start");
+                ex.printStackTrace();
                 stopTool();
                 System.out.println("MyThread:Preventively stopped");
                 return;
