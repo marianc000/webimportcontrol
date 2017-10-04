@@ -6,8 +6,9 @@
 package thread;
 
 import java.io.IOException;
+import main.DirectoryListener;
 import main.MyProperties;
-import main.WatchDir;
+ 
 
 /**
  *
@@ -15,7 +16,7 @@ import main.WatchDir;
  */
 public class MyThread extends Thread {
 
-    WatchDir wd;
+    DirectoryListener wd;
     MyProperties p;
 
     public MyThread(MyProperties p) {
@@ -38,8 +39,8 @@ public class MyThread extends Thread {
         if (wd == null) {
             System.out.println("MyThread:Starting");
             try {
-                wd = new WatchDir(p);
-                wd.processEvents();
+                wd = new DirectoryListener(p);
+                wd.listen();
 
             } catch (IOException ex) {
                 System.out.println("MyThread:Failed to start");
